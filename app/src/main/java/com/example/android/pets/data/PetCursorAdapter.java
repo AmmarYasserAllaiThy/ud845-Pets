@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.pets.R;
@@ -57,8 +58,12 @@ public class PetCursorAdapter extends CursorAdapter {
         // DONE: Fill out this method
         TextView nameTV = view.findViewById(R.id.name);
         TextView summaryTV = view.findViewById(R.id.summary);
+        ImageView iv = view.findViewById(R.id.iv);
 
         nameTV.setText(cursor.getString(cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_NAME)));
         summaryTV.setText(cursor.getString(cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_BREED)));
+
+        int gender = cursor.getInt(cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_GENDER));
+        iv.setImageResource(gender == 1 ? R.drawable.ic_male : R.drawable.ic_female);
     }
 }
